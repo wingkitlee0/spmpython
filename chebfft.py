@@ -23,7 +23,7 @@ def chebfft(v):
     uv = hstack((uu, uu[1:-1][::-1]))
     W = real(fft.ifft(1j*K*U))
     ww = dst(K*uv, 1)
-    from IPython import embed; embed()
+#    from IPython import embed; embed()
     w = zeros(N+1)
     w[1:N] = -W[1:N]/sqrt(1-x[1:N]**2)
     w[0] = sum(ii.T**2*U[0:len(ii)])/float(N) + 0.5*N*U[N]
@@ -31,7 +31,8 @@ def chebfft(v):
 
     return w
 
-N = 8
-x = cos(pi*arange(0,N+1)/N)
-v = exp(-4*x)
-chebfft(v)
+if __name__=="__main__":
+    N = 8
+    x = cos(pi*arange(0,N+1)/N)
+    v = exp(-4*x)
+    chebfft(v)
